@@ -14,4 +14,4 @@ function addThen(p, remaining) {
   });
 }
 
-addThen(p, 1000);
+addThen(p, 1000000);
