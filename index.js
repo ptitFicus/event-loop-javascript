@@ -9,7 +9,8 @@ for (let i = 0; i < 100; i++) {
     for (let j = 0; j < 100000000; j++) {
       (i * j) % Math.random();
     }
-    console.log(`done ${i}`);
+    console.log(`done timeout ${i}`);
   }, 0);
-  console.log("Done queing timeouts");
 }
+
+console.log("Done queuing timeouts");

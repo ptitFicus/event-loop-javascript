@@ -1,10 +1,14 @@
-requestAnimationFrame(() => console.log("RAF"));
+const button = document.getElementById("button");
 
-const p = Promise.resolve();
+button.addEventListener("click", () => {
+  requestAnimationFrame(() => console.log("RAF"));
+  const p = Promise.resolve();
+  recPromise(p, () => console.log("promise"));
+});
 
-const recPromise = f => p.then(() => {
-  f()
-  recPromise(f)
-})
-
-recPromise(() => console.log("promise"))
+function recPromise(p, f) {
+  p.then(() => {
+    f();
+    recPromise(p, f);
+  });
+}

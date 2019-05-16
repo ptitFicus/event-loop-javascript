@@ -1,17 +1,23 @@
-requestAnimationFrame(() => console.log("RAF"));
+const button = document.getElementById("button");
 
-const p = Promise.resolve();
+button.addEventListener("click", () => {
+  requestAnimationFrame(() => console.log("RAF"));
+
+  const p = Promise.resolve();
+  addThen(p, 1000000);
+});
 
 function addThen(p, remaining) {
   p.then(() => {
-    console.log("promise");
-    for (let j = 0; j < 10000; j++) {
+    for (let j = 0; j < 100000; j++) {
       (j * Math.random()) % Math.random();
     }
+    if (remaining % 1000 === 0) {
+      console.log("Done, remaining", remaining);
+    }
+
     if (remaining > 0) {
       addThen(p, remaining - 1);
     }
   });
 }
-
-addThen(p, 1000000);
